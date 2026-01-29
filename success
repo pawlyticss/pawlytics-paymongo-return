@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Returning to Pawlytics…</title>
+</head>
+<body style="font-family: Arial; padding: 20px;">
+  <h3>Payment successful ✅</h3>
+  <p>Returning to Pawlytics… If nothing happens, tap below.</p>
+
+  <button id="open" style="padding:12px 16px;font-size:16px;">
+    Open Pawlytics
+  </button>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const ref = params.get("ref") || "";
+    const deepLink = `pawlytics://donation/success?ref=${encodeURIComponent(ref)}`;
+
+    // auto open
+    window.location.href = deepLink;
+
+    // fallback
+    document.getElementById("open").onclick = () => {
+      window.location.href = deepLink;
+    };
+  </script>
+</body>
+</html>
